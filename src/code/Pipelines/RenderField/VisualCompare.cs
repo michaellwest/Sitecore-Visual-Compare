@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sitecore.Configuration;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
@@ -58,15 +59,6 @@ namespace Sitecore.Sharedsource.Pipelines.RenderField
             return item == null || item.Statistics.Revision == args.Item.Statistics.Revision ? null : item;
         }
 
-        protected string GetColor(bool fieldChanged, bool isContextItem)
-        {
-            if (isContextItem)
-            {
-                return fieldChanged ? "red" : "green";
-            }
-            return fieldChanged ? "blue" : "black";
-        }
-
         public void Process(RenderFieldArgs args)
         {
             var item = GetItem(args);
@@ -78,12 +70,9 @@ namespace Sitecore.Sharedsource.Pipelines.RenderField
 
             var oldText = item[args.FieldName];
             var updatedText = args.Item[args.FieldName];
-            var fieldChanged = true;
 
-            if (string.Compare(updatedText, oldText, false) == 0)
+            if (String.CompareOrdinal(updatedText, oldText) == 0)
             {
-                fieldChanged = false;
-
                 if (!IndicateUnchangedFields)
                 {
                     return;
@@ -99,12 +88,8 @@ namespace Sitecore.Sharedsource.Pipelines.RenderField
             if (RenderTextualDifferences && args.FieldTypeKey != "image")
             {
                 var evaluator = new FieldDifferenceEvaluator();
-                args.Result.FirstPart = evaluator.GetDifferences(updatedText, oldText);
+                args.Result.FirstPart = evaluator.GetDifferences(oldText, updatedText);
             }
-
-            args.Result.FirstPart =
-                $"<div style='border: 1px {GetColor(fieldChanged, Context.Item.ID == args.Item.ID)} solid; margin: -1px;'>{args.Result.FirstPart}";
-            args.Result.LastPart += "</div>";
         }
     }
 }

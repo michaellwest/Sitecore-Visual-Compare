@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using Sitecore.Text.Diff;
 
 namespace Sitecore.Sharedsource.Data.Fields
@@ -15,7 +14,7 @@ namespace Sitecore.Sharedsource.Data.Fields
         {
             if (!string.IsNullOrEmpty(color))
             {
-                builder.Append("<span style=\"color:" + color + "\">");
+                builder.Append($"<span style='color:{color}'>");
             }
 
             if (length > 0 && index >= 0)
@@ -32,8 +31,9 @@ namespace Sitecore.Sharedsource.Data.Fields
         public string GetDifferences(string first, string second)
         {
             var engine = new DiffEngine();
-            var source = new DiffListHtml(StringUtil.RemoveTags(first));
-            var destination = new DiffListHtml(StringUtil.RemoveTags(second));
+            var source = new DiffListHtml(first);
+            var destination = new DiffListHtml(second);
+
             engine.ProcessDiff(source, destination, DiffEngineLevel.SlowPerfect);
             var builder = new StringBuilder();
 
@@ -46,34 +46,14 @@ namespace Sitecore.Sharedsource.Data.Fields
                         Append(builder, first, span.SourceIndex, span.Length);
                         break;
                     case DiffResultSpanStatus.Replace:
-                        Append(
-                            builder,
-                            first,
-                            span.SourceIndex,
-                            span.Length,
-                            "green");
-                        Append(
-                            builder,
-                            second,
-                            span.DestIndex,
-                            span.Length,
-                            "red;text-decoration:line-through;font-weight:bold");
+                        Append(builder, first, span.SourceIndex, span.Length, "green");
+                        Append(builder, second, span.DestIndex, span.Length, "red;text-decoration:line-through;font-weight:bold");
                         break;
                     case DiffResultSpanStatus.DeleteSource:
-                        Append(
-                            builder,
-                            first,
-                            span.SourceIndex,
-                            span.Length,
-                            "green;font-weight:bold");
+                        Append(builder, first, span.SourceIndex, span.Length, "red;text-decoration:line-through;font-weight:bold");
                         break;
                     case DiffResultSpanStatus.AddDestination:
-                        Append(
-                            builder,
-                            second,
-                            span.DestIndex,
-                            span.Length,
-                            "blue;font-weight:bold");
+                        Append(builder, second, span.DestIndex, span.Length, "blue;font-weight:bold");
                         break;
                 }
             }
