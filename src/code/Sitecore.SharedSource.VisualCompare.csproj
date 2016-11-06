@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sitecore.SharedSource</RootNamespace>
-    <AssemblyName>Sitecore.SharedSource.VersionCompare</AssemblyName>
+    <AssemblyName>Sitecore.SharedSource.VisualCompare</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Sitecore.Kernel">
-      <HintPath>..\..\..\..\Users\Michael\Downloads\sitecore-package-tools-master\Sitecore.Strategy.Packages\Sitecore.Strategy.Packages\Lib\Sitecore.Kernel.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Kernel.NoReferences.8.2.160729\lib\NET452\Sitecore.Kernel.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,9 +52,21 @@
     <Compile Include="Shell\Framework\Commands\System\VisualCompare.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Include\VisualCompare.config" />
+    <None Include="App_Config\Include\Project\VisualCompare\Sitecore.SharedSource.VisualCompare.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>echo "Copy build for Mikey"
+IF EXIST C:\Websites\versions.dev.local (
+    xcopy $(TargetDir)Sitecore.SharedSource.VisualCompare*.* C:\Websites\versions.dev.local\Website\bin\*.* /s /e /c /y
+    xcopy $(ProjectDir)App_Config\Include\*.* C:\Websites\versions.dev.local\Website\App_Config\Include\*.* /s /e /c /y
+)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
