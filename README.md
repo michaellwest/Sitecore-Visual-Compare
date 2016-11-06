@@ -6,3 +6,5 @@ The Sitecore Visual Compare module provides the ability to compare between the c
 John West is the creator of this module in it's original form. Thank you John for the wealth of knowledge you made available publicly.
 
 https://community.sitecore.net/technical_blogs/b/sitecorejohn_blog/posts/use-preview-to-compare-version-differences-with-the-sitecore-asp-net-cms
+
+![Changed Text](images/change-example.png?raw=true "Changed Text")
