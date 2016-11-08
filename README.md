@@ -7,4 +7,8 @@ John West is the creator of this module in it's original form. Thank you John fo
 
 https://community.sitecore.net/technical_blogs/b/sitecorejohn_blog/posts/use-preview-to-compare-version-differences-with-the-sitecore-asp-net-cms
 
+### Experience Editor Visual Compare
 ![Changed Text](images/change-example.png?raw=true "Changed Text")
+
+### Content Editor Version Compare
+![Changed Text](images/change-example2.png?raw=true "Changed Text")
