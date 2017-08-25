@@ -1,0 +1,58 @@
+<project>
+  <Metadata>
+    <metadata>
+      <PackageName>Sitecore Visual Compare</PackageName>
+      <Author>Michael West / Kamruz Jaman</Author>
+      <Version>1.0.1</Version>
+      <Revision />
+      <License />
+      <Comment />
+      <Attributes />
+      <Readme />
+      <Publisher>West Co SXP</Publisher>
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xitems>
+      <Entries>
+        <x-item>/core/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Publish/Visual Comparison/{4FC76EA1-AABC-4B5F-9F99-7CD6765F30A7}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/WebEdit/Menus/Other Views/Visual Compare/{26816B57-1161-4715-88BE-FD48E379E68D}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms />
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Ribbon Buttons</Name>
+    </xitems>
+    <xfiles>
+      <Entries>
+        <x-item>/App_Config/Include/Feature/VisualCompare/Sitecore.SharedSource.VisualCompare.config</x-item>
+        <x-item>/bin/Sitecore.SharedSource.VisualCompare.dll</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms />
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Files</Name>
+    </xfiles>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
