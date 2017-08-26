@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Sitecore.Text.Diff;
 
-namespace Sitecore.Sharedsource.Data.Fields
+namespace Sitecore.Sharedsource.VisualCompare.Data.Fields
 {
     public class FieldDifferenceEvaluator
     {

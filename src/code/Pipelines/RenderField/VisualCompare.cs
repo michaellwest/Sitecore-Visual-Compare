@@ -5,10 +5,10 @@ using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Pipelines;
 using Sitecore.Pipelines.RenderField;
-using Sitecore.Sharedsource.Data.Fields;
+using Sitecore.Sharedsource.VisualCompare.Data.Fields;
 using Sitecore.Web;
 
-namespace Sitecore.Sharedsource.Pipelines.RenderField
+namespace Sitecore.Sharedsource.VisualCompare.Pipelines.RenderField
 {
     public class VisualCompare
     {

@@ -7,7 +7,7 @@
     <ProjectGuid>{59A0DF45-22A0-4104-96BA-610E7F453E1A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sitecore.SharedSource</RootNamespace>
+    <RootNamespace>Sitecore.SharedSource.VisualCompare</RootNamespace>
     <AssemblyName>Sitecore.SharedSource.VisualCompare</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -30,9 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.NoReferences.8.2.160729\lib\NET452\Sitecore.Kernel.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.ExperienceEditor, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.ExperienceEditor.NoReferences.8.1.151003\lib\NET45\Sitecore.ExperienceEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.ExperienceEditor.Speak, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.ExperienceEditor.Speak.NoReferences.8.1.151003\lib\NET45\Sitecore.ExperienceEditor.Speak.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.ExperienceEditor.Speak.Ribbon, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.ExperienceEditor.Speak.Ribbon.NoReferences.8.1.151003\lib\NET45\Sitecore.ExperienceEditor.Speak.Ribbon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Kernel.NoReferences.8.1.151003\lib\NET45\Sitecore.Kernel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,13 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Fields\FieldDifferenceEvaluator.cs" />
+    <Compile Include="ExperienceEditor\Ribbon\CanSelectMode.cs" />
+    <Compile Include="ExperienceEditor\Ribbon\SelectModeRequest.cs" />
     <Compile Include="Pipelines\RenderField\CustomRenderFieldArgs.cs" />
     <Compile Include="Pipelines\RenderField\VisualCompare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shell\Framework\Commands\System\VisualCompare.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Include\Project\VisualCompare\Sitecore.SharedSource.VisualCompare.config" />
+    <None Include="App_Config\Include\Feature\VisualCompare\Sitecore.SharedSource.VisualCompare.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -61,11 +75,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>echo "Copy build for Mikey"
-IF EXIST C:\Websites\versions.dev.local (
-    xcopy $(TargetDir)Sitecore.SharedSource.VisualCompare*.* C:\Websites\versions.dev.local\Website\bin\*.* /s /e /c /y
-    xcopy $(ProjectDir)App_Config\Include\*.* C:\Websites\versions.dev.local\Website\App_Config\Include\*.* /s /e /c /y
-)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
